@@ -1,5 +1,8 @@
 @echo off
-REM ===== Matize-Musik Git Sync =====
+REM ============================================
+REM   Matize-Musik – GitHub Sync (final)
+REM   Lädt nur geänderte Dateien hoch
+REM ============================================
 
 cd /d "D:\Matize\Matize-Kreation\Matize-Musik"
 
@@ -8,52 +11,45 @@ echo   GitHub Sync wird gestartet ...
 echo   Projekt: Matize-Musik
 echo ============================================
 
-REM Lock entfernen falls vorhanden
+REM 1) Alten Git-Lock entfernen
 if exist ".git\index.lock" (
-    echo [Info] index.lock gefunden, entferne ...
+    echo [Info] index.lock gefunden, wird entfernt ...
     del /f /q ".git\index.lock"
 )
 
-REM Init falls nötig
-if not exist ".git" (
-    echo [Info] Initialisiere Git ...
-    git init
-)
-
-REM auf main gehen
-git branch -M main
-
-REM origin setzen/fixen (ohne Slash am Ende!)
+REM 2) Sicherstellen, dass origin korrekt gesetzt ist
 git remote get-url origin >nul 2>&1
 if errorlevel 1 (
-    echo [Info] origin wird gesetzt ...
+    echo [Info] origin nicht vorhanden – setze origin ...
     git remote add origin https://github.com/Matize-Kreation/Matize-Musik.git
 ) else (
-    echo [Info] origin vorhanden, URL wird sichergestellt ...
     git remote set-url origin https://github.com/Matize-Kreation/Matize-Musik.git
 )
 
-REM Änderungen sammeln
-git add .
+REM 3) Änderungen erfassen
+git add -A
 
-REM commit nur wenn was da ist
+REM 4) Prüfen, ob etwas Neues da ist
 git diff --cached --quiet
-if errorlevel 1 (
-    git commit -m "Auto-Commit am %date% %time%"
-) else (
-    echo [Info] keine neuen Änderungen.
+if %errorlevel%==0 (
+    echo [Info] Keine neuen Änderungen gefunden. Nichts zu tun.
+    echo --------------------------------------------
+    pause
+    goto :eof
 )
 
-echo [Info] versuche: git pull origin main --rebase
+REM 5) Commit mit Datum/Zeit
+git commit -m "Auto-Commit am %date% %time%"
+
+REM 6) Lokalen Stand mit Remote abgleichen
+echo [Info] Aktualisiere lokalen Stand (pull --rebase) ...
 git pull origin main --rebase
 
-echo [Info] versuche: git push origin main
+REM 7) Pushen
+echo [Info] Lade Änderungen nach GitHub hoch ...
 git push origin main
 
 echo --------------------------------------------
-echo   Fertig.
-echo   Wenn immer noch 'repository not found' kommt,
-echo   dann ist das Repo auf GitHub NICHT angelegt
-echo   oder der Name passt nicht exakt.
+echo   Upload abgeschlossen!
 echo --------------------------------------------
 pause
