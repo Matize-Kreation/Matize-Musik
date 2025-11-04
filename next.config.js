@@ -1,8 +1,16 @@
 // next.config.js
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     reactStrictMode: true,
-    // Entferne 'output: export' wenn du dynamische Seiten hast
-    experimental: {
-        appDir: true, // falls du das App-Directory von Next.js verwendest
-    }
-}
+
+    // wenn du GitHub Pages benutzt:
+    output: "export",
+    basePath: "/Matize-Musik",
+    trailingSlash: true,
+
+    images: {
+        unoptimized: true,
+    },
+};
+
+module.exports = nextConfig;
