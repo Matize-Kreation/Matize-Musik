@@ -1,0 +1,31 @@
+// tsconfig.json (Ausschnitt)
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "ESNext",
+        "jsx": "preserve",
+        "allowJs": true,
+        "strict": true,
+        "baseUrl": ".", // ⬅️ wichtig
+        "paths": {
+            "@/*": [
+                "src/*"
+            ] // ⬅️ damit funktioniert `@/lib/...`
+        },
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.cjs",
+        "**/*.mjs"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

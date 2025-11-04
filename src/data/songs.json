@@ -1,0 +1,228 @@
+[
+    {
+        "id": "spotlight_an",
+        "slug": "spotlight_an",
+        "title": "Spotlight an",
+        "displayTitle": "Spotlight an",
+        "subtitle": "Eröffnungsstück des Seelen-Epos",
+        "cover": "/images/covers/facetten/tracks/01-spotlight_an.jpg",
+        "audioUrl": "/audio/facetten/1 - Spotlight_an_(Master).mp3",
+        "audio": "/audio/facetten/1 - Spotlight_an_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-01-01",
+        "tags": [
+            "Facetten",
+            "Intro",
+            "Cinematic"
+        ],
+        "lyricsLrc": "[00:00.00]Spotlight an\n[00:02.80]Nehm' den Stift und mal die Bahn\n[00:05.60]Jede Facette wird jetzt klar\n[00:08.20]Matize stellt die Bühne dar\n[00:11.00]Spotlight an"
+    },
+    {
+        "id": "mein_ding",
+        "slug": "mein_ding",
+        "title": "Mein Ding",
+        "displayTitle": "Mein Ding",
+        "subtitle": "Authentische Grundeinstellung",
+        "cover": "/images/covers/facetten/tracks/02-mein_ding.jpg",
+        "audioUrl": "/audio/facetten/2 - Mein_Ding_(Master).mp3",
+        "audio": "/audio/facetten/2 - Mein_Ding_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-02-01",
+        "tags": [
+            "Facetten",
+            "Rap"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen\n[00:04.00]Hier kommt später der echte Text"
+    },
+    {
+        "id": "perspektive",
+        "slug": "perspektive",
+        "title": "Perspektive",
+        "displayTitle": "Perspektive",
+        "subtitle": "Innerer Blick und Selbsterkenntnis",
+        "cover": "/images/covers/facetten/tracks/03-perspektive.jpg",
+        "audioUrl": "/audio/facetten/3 - Perspektive_(Master).mp3",
+        "audio": "/audio/facetten/3 - Perspektive_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-03-01",
+        "tags": [
+            "Facetten",
+            "Spoken Word"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen"
+    },
+    {
+        "id": "kunst",
+        "slug": "kunst",
+        "title": "Kunst",
+        "displayTitle": "Kunst",
+        "subtitle": "Ein Manifest kreativer Schöpfung",
+        "cover": "/images/covers/facetten/tracks/04-kunst.jpg",
+        "audioUrl": "/audio/facetten/4 - Kunst_(Master).mp3",
+        "audio": "/audio/facetten/4 - Kunst_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-04-01",
+        "tags": [
+            "Facetten",
+            "Poetic Rap"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen"
+    },
+    {
+        "id": "klartext",
+        "slug": "klartext",
+        "title": "Klartext",
+        "displayTitle": "Klartext",
+        "subtitle": "Real Talk ohne Filter",
+        "cover": "/images/covers/facetten/tracks/05-klartext.jpg",
+        "audioUrl": "/audio/facetten/5 - Klartext_(Master).mp3",
+        "audio": "/audio/facetten/5 - Klartext_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-05-01",
+        "tags": [
+            "Facetten",
+            "Statement"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen"
+    },
+    {
+        "id": "arme_des_teufels",
+        "slug": "arme_des_teufels",
+        "title": "Arme des Teufels",
+        "displayTitle": "Arme des Teufels",
+        "subtitle": "Dunkle Versuchung und Rettung",
+        "cover": "/images/covers/facetten/tracks/06-arme_des_teufels.jpg",
+        "audioUrl": "/audio/facetten/6 - Arme_des_Teufels_(Master).mp3",
+        "audio": "/audio/facetten/6 - Arme_des_Teufels_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-06-01",
+        "tags": [
+            "Facetten",
+            "Storytelling"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen"
+    },
+    {
+        "id": "psychoanalyse",
+        "slug": "psychoanalyse",
+        "title": "Psychoanalyse",
+        "displayTitle": "Psychoanalyse",
+        "subtitle": "Ein innerer Dialog mit dem Wahnsinn",
+        "cover": "/images/covers/facetten/tracks/07-psychoanalyse.jpg",
+        "audioUrl": "/audio/facetten/7 - Psychoanalyse_(Master).mp3",
+        "audio": "/audio/facetten/7 - Psychoanalyse_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-07-01",
+        "tags": [
+            "Facetten",
+            "Dark"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen"
+    },
+    {
+        "id": "wasserfarben",
+        "slug": "wasserfarben",
+        "title": "Wasserfarben",
+        "displayTitle": "Wasserfarben",
+        "subtitle": "Verblassende Erinnerungen, malerisch erzählt",
+        "cover": "/images/covers/facetten/tracks/08-wasserfarben.jpg",
+        "audioUrl": "/audio/facetten/8 - Wasserfarben_(Master).mp3",
+        "audio": "/audio/facetten/8 - Wasserfarben_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-08-01",
+        "tags": [
+            "Facetten",
+            "Poetry"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen"
+    },
+    {
+        "id": "tip_top",
+        "slug": "tip_top",
+        "title": "Tip Top",
+        "displayTitle": "Tip Top",
+        "subtitle": "Rhythmus, Haltung und Lebensenergie",
+        "cover": "/images/covers/facetten/tracks/09-tip-top.jpg",
+        "audioUrl": "/audio/facetten/9 - Tip_Top_(Master).mp3",
+        "audio": "/audio/facetten/9 - Tip_Top_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-09-01",
+        "tags": [
+            "Facetten",
+            "Drive"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen"
+    },
+    {
+        "id": "buddy",
+        "slug": "buddy",
+        "title": "Buddy",
+        "displayTitle": "Buddy",
+        "subtitle": "Brüderlichkeit und Loyalität",
+        "cover": "/images/covers/facetten/tracks/10-buddy.jpg",
+        "audioUrl": "/audio/facetten/10 - Buddy_(Master).mp3",
+        "audio": "/audio/facetten/10 - Buddy_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-10-01",
+        "tags": [
+            "Facetten",
+            "Friendship"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen"
+    },
+    {
+        "id": "fakt_und_ansicht",
+        "slug": "fakt_und_ansicht",
+        "title": "Fakt & Ansicht",
+        "displayTitle": "Fakt & Ansicht",
+        "subtitle": "Wahrheit, Meinung und Selbstreflexion",
+        "cover": "/images/covers/facetten/tracks/11-fakt_und_ansicht.jpg",
+        "safeCover": "/images/covers/facetten/tracks/11-fakt_und_ansicht.jpg",
+        "audioUrl": "/audio/facetten/11 - Fakt_und_Ansicht_(Master).mp3",
+        "audio": "/audio/facetten/11 - Fakt_und_Ansicht_(Master).mp3",
+        "safeAudio": "/audio/facetten/11 - Fakt_und_Ansicht_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-11-01",
+        "tags": [
+            "Facetten",
+            "Philosophical"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen"
+    },
+    {
+        "id": "apokalypse",
+        "slug": "apokalypse",
+        "title": "Apokalypse",
+        "displayTitle": "Apokalypse",
+        "subtitle": "Endzeit, Neubeginn und Läuterung",
+        "cover": "/images/covers/facetten/tracks/12-apokalypse.jpg",
+        "audioUrl": "/audio/facetten/12 - Apokalypse_(Master).mp3",
+        "audio": "/audio/facetten/12 - Apokalypse_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2025-12-01",
+        "tags": [
+            "Facetten",
+            "Cinematic"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen"
+    },
+    {
+        "id": "blut_und_ehre",
+        "slug": "blut_und_ehre",
+        "title": "Blut & Ehre",
+        "displayTitle": "Blut & Ehre",
+        "subtitle": "Werte, Familie, Loyalität",
+        "cover": "/images/covers/facetten/tracks/13-blut-und-ehre.jpg",
+        "safeCover": "/images/covers/facetten/tracks/13-blut-und-ehre.jpg",
+        "audioUrl": "/audio/facetten/13 - Blut_und_Ehre_(Master).mp3",
+        "audio": "/audio/facetten/13 - Blut_und_Ehre_(Master).mp3",
+        "safeAudio": "/audio/facetten/13 - Blut_und_Ehre_(Master).mp3",
+        "spotifyUrl": "https://open.spotify.com/track/DEINELINK",
+        "releaseDate": "2026-01-01",
+        "tags": [
+            "Facetten",
+            "Finale"
+        ],
+        "lyricsLrc": "[00:00.00]Lyrics folgen"
+    }
+]
