@@ -7,8 +7,20 @@ echo      🚀 Starte Matize-Musik Development Server
 echo ================================================
 echo.
 
-REM Pfad zum Projekt
+REM -----------------------------------------------
+REM 1) PROJEKT-PFAD ANPASSEN
+REM -----------------------------------------------
 cd /d "D:\Matize\Matize-Kreation\Matize-Musik"
+
+REM -----------------------------------------------
+REM 2) URL FESTLEGEN
+REM Wenn du in next.config.js im DEV KEIN basePath hast (empfohlen):
+set "APP_URL=http://localhost:3000/"
+
+REM Wenn du doch im DEV mit basePath arbeitest,
+REM dann kommentiere die Zeile oben aus und nimm diese:
+REM set "APP_URL=http://localhost:3000/Matize-Musik"
+REM -----------------------------------------------
 
 REM Prüfen, ob Node vorhanden ist
 where node >nul 2>nul
@@ -23,15 +35,15 @@ REM Server starten
 echo 🔧 Server wird gestartet...
 start "" cmd /k "npm run dev"
 
-REM Warte kurz, bis Server startet
+REM kurz warten, bis der Dev-Server hochkommt
 timeout /t 5 /nobreak >nul
 
-REM Browser öffnen (Edge oder Standardbrowser)
-echo 🌐 Öffne Browser auf http://localhost:3000
-start "" "http://localhost:3000"
+REM Browser oeffnen
+echo 🌐 Öffne Browser auf %APP_URL%
+start "" "%APP_URL%"
 
 echo.
-echo ✅ Matize-Musik laeuft jetzt unter: http://localhost:3000
+echo ✅ Matize-Musik laeuft jetzt unter: %APP_URL%
 echo Zum Beenden bitte im Dev-Fenster STRG + C druecken.
 echo.
 pause

@@ -1,13 +1,11 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig = {
     reactStrictMode: true,
-
-    // wenn du GitHub Pages benutzt:
     output: "export",
-    basePath: "/Matize-Musik",
+    basePath: isProd ? "/Matize-Musik" : "",
     trailingSlash: true,
-
     images: {
         unoptimized: true,
     },
