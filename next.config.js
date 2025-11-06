@@ -1,17 +1,21 @@
+// next.config.js
 /** @type {import('next').NextConfig} */
-
 const isProd = process.env.NODE_ENV === "production";
 
+const repoName = "Matize-Musik"; // dein GitHub-Repo-Name
+
 const nextConfig = {
-  output: "export",
-  images: {
-    // weil GitHub Pages kein Image Optimization-Server hat
-    unoptimized: true,
-  },
-  // wichtig für GitHub Pages unter /Matize-Musik
-  basePath: isProd ? "/Matize-Musik" : "",
-  assetPrefix: isProd ? "/Matize-Musik/" : "",
-  trailingSlash: true,
+    reactStrictMode: true,
+    output: "export",
+    // alle Routen bekommen das Präfix
+    basePath: isProd ? `/${repoName}` : "",
+    // alle Assets (_next/static/...) auch
+    assetPrefix: isProd ? `/${repoName}/` : "",
+    trailingSlash: true,
+    staticPageGenerationTimeout: 180,
+    images: {
+        unoptimized: true,
+    },
 };
 
 module.exports = nextConfig;
