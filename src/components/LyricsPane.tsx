@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 
@@ -27,7 +27,7 @@ function parseLrc(lrc?: string): LyricsLine[] {
 interface LyricsPaneProps {
     lrc?: string;
     currentTime: number;
-    isPlaying?: boolean; // ← NEU
+    isPlaying?: boolean; // â† NEU
 }
 
 export default function LyricsPane({
@@ -48,7 +48,7 @@ export default function LyricsPane({
         }
     }, [currentTime, lines]);
 
-    // Basismaße
+    // BasismaÃŸe
     const lineHeightRem = 2.5; // muss zu h-10 passen
     const centerOffsetRem = 4.5; // wo die aktive Zeile "stehen" soll
 
@@ -90,7 +90,7 @@ export default function LyricsPane({
                                             : ""
                                         }`}
                                 >
-                                    {line.text || "⋯"}
+                                    {line.text || "â‹¯"}
                                 </span>
                             </div>
                         );
@@ -104,3 +104,4 @@ export default function LyricsPane({
         </div>
     );
 }
+

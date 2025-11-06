@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -6,13 +6,13 @@ import Image from "next/image";
 const TRACKS = [
     {
         id: "1",
-        title: "Facetten I – Ruf",
+        title: "Facetten I â€“ Ruf",
         cover: "/images/tracks/facetten-1.png",
         audioUrl: "/audio/facetten-1.mp3",
     },
     {
         id: "2",
-        title: "Matize – Klartext",
+        title: "Matize â€“ Klartext",
         cover: "/images/tracks/klartext.png",
         audioUrl: "/audio/klartext.mp3",
     },
@@ -53,9 +53,9 @@ export default function TrackGallery() {
                                 fill
                                 className="object-cover transition duration-200 group-hover:scale-[1.03] group-hover:brightness-110"
                             />
-                            {/* „Schärfungs“-Lichtfenster */}
+                            {/* â€žSchÃ¤rfungsâ€œ-Lichtfenster */}
                             <div className="absolute inset-0 mix-blend-screen pointer-events-none bg-[radial-gradient(circle,_rgba(255,255,255,0.18)_0%,_rgba(0,0,0,0)_55%)]" />
-                            {/* Dunkler Verlauf für Titel */}
+                            {/* Dunkler Verlauf fÃ¼r Titel */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/0 to-black/10" />
                         </div>
 
@@ -102,7 +102,7 @@ export default function TrackGallery() {
                         <div className="flex flex-col flex-1 min-w-0">
                             <p className="text-sm text-slate-100 font-semibold truncate">{activeTrack.title}</p>
                             <p className="text-[0.68rem] text-slate-300/60 uppercase tracking-[0.2em]">
-                                Matize · Single
+                                Matize Â· Single
                             </p>
                             <div className="mt-2 h-1.5 bg-slate-800/90 rounded-full overflow-hidden">
                                 <div className="h-full w-1/3 bg-cyan-400/90 transition-all" />
@@ -144,3 +144,4 @@ export default function TrackGallery() {
         </div>
     );
 }
+

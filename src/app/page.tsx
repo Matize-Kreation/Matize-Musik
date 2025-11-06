@@ -1,7 +1,8 @@
-// src/app/page.tsx
+﻿// src/app/page.tsx
 import { redirect } from "next/navigation";
 
 export default function Home() {
-    // Start immer auf der Musik-Bühne
+    // Start immer auf der Musik-BÃ¼hne
     redirect("/musik");
 }
+

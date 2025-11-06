@@ -1,4 +1,4 @@
-// src/lib/paths.ts
+﻿// src/lib/paths.ts
 
 // in PROD (GitHub Pages) brauchen wir /Matize-Musik vorne dran
 const BASE_PATH =
@@ -6,18 +6,18 @@ const BASE_PATH =
 
 /**
  * Macht aus lokalen Windows-Pfaden oder schon vorhandenen /images/...-Pfaden
- * einen sauberen öffentlichen Pfad inkl. BasePath.
+ * einen sauberen Ã¶ffentlichen Pfad inkl. BasePath.
  */
 export function normalizePublicPath(raw?: string | null): string | null {
     if (!raw) return null;
 
     // deine Projekt-Roots (Windows)
     const winRoot = "D:\\Matize\\Matize-Kreation\\Matize-Musik\\public\\";
-    const winRootAlt = "D:/Matize/Matize-Kreation/Matize-Musik/public/";
+    const winRootAlt = "D:/Matize/Matize-Kreation/Matize-Musik//";
 
     let cleaned = raw;
 
-    // wenn ein absoluter Windows-Pfad reinkommt → auf Public relativieren
+    // wenn ein absoluter Windows-Pfad reinkommt â†’ auf Public relativieren
     if (cleaned.startsWith(winRoot)) {
         cleaned = cleaned.replace(winRoot, "/");
     } else if (cleaned.startsWith(winRootAlt)) {
@@ -37,9 +37,10 @@ export function normalizePublicPath(raw?: string | null): string | null {
 }
 
 /**
- * Für Links wie /musik → /Matize-Musik/musik in prod
+ * FÃ¼r Links wie /musik â†’ /Matize-Musik/musik in prod
  */
 export function withBase(path: string): string {
     if (!path.startsWith("/")) path = "/" + path;
     return `${BASE_PATH}${path}`;
 }
+

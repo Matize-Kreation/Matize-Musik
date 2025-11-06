@@ -1,4 +1,4 @@
-// src/lib/facetten.ts
+﻿// src/lib/facetten.ts
 import songs from "@/data/songs.json";
 import { normalizePublicPath } from "./paths";
 
@@ -63,7 +63,8 @@ export function getSongAudioSrc(song: MatizeSong | null | undefined): string {
     return raw ? encodeURI(raw) : "";
 }
 
-// falls du öfter die Liste brauchst
+// falls du Ã¶fter die Liste brauchst
 export function getAllSongs(): MatizeSong[] {
     return SONG_LIST;
 }
+

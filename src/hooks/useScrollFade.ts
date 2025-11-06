@@ -1,1 +1,2 @@
-// Placeholder file for structure
+﻿// Placeholder file for structure
+

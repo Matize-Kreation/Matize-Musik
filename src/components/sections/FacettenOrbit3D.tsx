@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 import React, {
     useState,
     useCallback,
     useEffect,
-    useRef, // ⬅️ neu
+    useRef, // â¬…ï¸ neu
 } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,13 +13,13 @@ import PlayerLayout from "@/components/PlayerLayout";
 
 const ORBIT_STORAGE_KEY = "facetten-orbit-angle";
 
-// Windows-Pfad → Web-Pfad umwandeln
+// Windows-Pfad â†’ Web-Pfad umwandeln
 function normalizeCoverPath(raw?: string | null): string | null {
     if (!raw) return null;
 
     // Windows-Pfad aus deinem Projekt:
     const winRoot = "D:\\Matize\\Matize-Kreation\\Matize-Musik\\public\\";
-    const winRootAlt = "D:/Matize/Matize-Kreation/Matize-Musik/public/";
+    const winRootAlt = "D:/Matize/Matize-Kreation/Matize-Musik//";
 
     let cleaned = raw;
 
@@ -32,7 +32,7 @@ function normalizeCoverPath(raw?: string | null): string | null {
     // Backslashes zu normalen Slashes
     cleaned = cleaned.replace(/\\/g, "/");
 
-    // sicherstellen, dass es mit / anfängt
+    // sicherstellen, dass es mit / anfÃ¤ngt
     if (!cleaned.startsWith("/")) {
         cleaned = "/" + cleaned;
     }
@@ -40,9 +40,9 @@ function normalizeCoverPath(raw?: string | null): string | null {
     return cleaned;
 }
 
-// Fallback für deine 3 genannten Cover
+// Fallback fÃ¼r deine 3 genannten Cover
 function getCoverSrc(song: any): string | null {
-    // 1) wenn im Song was steht → normalisieren
+    // 1) wenn im Song was steht â†’ normalisieren
     if (song?.cover) {
         const norm = normalizeCoverPath(song.cover);
         if (norm) return norm;
@@ -51,12 +51,12 @@ function getCoverSrc(song: any): string | null {
     const title = (song?.title || "").toLowerCase();
     const slug = (song?.slug || "").toLowerCase();
 
-    // 04 – Kunst
+    // 04 â€“ Kunst
     if (title.includes("kunst") || slug.includes("kunst") || slug.includes("04")) {
         return "/images/covers/facetten/tracks/04-kunst.jpg";
     }
 
-    // 11 – Fakt und Ansicht
+    // 11 â€“ Fakt und Ansicht
     if (
         title.includes("fakt") ||
         title.includes("ansicht") ||
@@ -67,7 +67,7 @@ function getCoverSrc(song: any): string | null {
         return "/images/covers/facetten/tracks/11-fakt_und_ansicht.jpg";
     }
 
-    // 12 – Apokalypse
+    // 12 â€“ Apokalypse
     if (
         title.includes("apokalypse") ||
         slug.includes("apokalypse") ||
@@ -98,7 +98,7 @@ export default function FacettenOrbit3D() {
         }
     >(null);
 
-    // ⬅️ neu: hier merken wir uns die Orbit-Position genau beim Öffnen
+    // â¬…ï¸ neu: hier merken wir uns die Orbit-Position genau beim Ã–ffnen
     const angleCheckpointRef = useRef<number | null>(null);
 
     // gespeicherten Winkel holen
@@ -130,7 +130,7 @@ export default function FacettenOrbit3D() {
     }, [isFocused, selectedSong]);
 
     const closeOverlay = () => {
-        // ⬅️ beim Schließen wieder auf die alte Orbit-Position springen
+        // â¬…ï¸ beim SchlieÃŸen wieder auf die alte Orbit-Position springen
         if (angleCheckpointRef.current !== null) {
             setBaseAngle(angleCheckpointRef.current);
             angleCheckpointRef.current = null;
@@ -138,7 +138,7 @@ export default function FacettenOrbit3D() {
         setSelectedSong(null);
         setOverlayPos(null);
         // WICHTIG: kein setIsFocused(false) hier,
-        // damit das Drehen danach sofort wieder möglich ist
+        // damit das Drehen danach sofort wieder mÃ¶glich ist
     };
 
     const onWheel = useCallback(
@@ -164,7 +164,7 @@ export default function FacettenOrbit3D() {
     // deine Orbit-Parameter
     const radius = 480; // sattes Drehmoment
     const itemSize = 130;
-    const ORBIT_X_OFFSET = -48; // leicht nach links gezogen, wie gewünscht
+    const ORBIT_X_OFFSET = -48; // leicht nach links gezogen, wie gewÃ¼nscht
 
     return (
         <div
@@ -233,7 +233,7 @@ export default function FacettenOrbit3D() {
                                         onClick={(e) => {
                                             e.stopPropagation();
 
-                                            // ⬅️ genau HIER: aktuelle Orbit-Position merken
+                                            // â¬…ï¸ genau HIER: aktuelle Orbit-Position merken
                                             angleCheckpointRef.current = baseAngle;
 
                                             const rect = (e.currentTarget as HTMLButtonElement).getBoundingClientRect();
@@ -375,9 +375,9 @@ export default function FacettenOrbit3D() {
                             <button
                                 onClick={closeOverlay}
                                 className="absolute top-5 right-6 text-slate-200/75 hover:text-white text-2xl z-[1000]"
-                                aria-label="Schließen"
+                                aria-label="SchlieÃŸen"
                             >
-                                ×
+                                Ã—
                             </button>
                             <PlayerLayout
                                 coverSrc={
@@ -397,7 +397,7 @@ export default function FacettenOrbit3D() {
                                         target="_blank"
                                         className="inline-block mt-2 text-sm text-emerald-200 hover:text-white underline underline-offset-4"
                                     >
-                                        Auf Spotify öffnen
+                                        Auf Spotify Ã¶ffnen
                                     </a>
                                 ) : null}
                                 {selectedSong.slug ? (
@@ -417,3 +417,4 @@ export default function FacettenOrbit3D() {
         </div>
     );
 }
+

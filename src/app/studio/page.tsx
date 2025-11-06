@@ -1,4 +1,4 @@
-// src/app/page.tsx
+﻿// src/app/page.tsx
 export default function HomePage() {
     return (
         <main className="min-h-screen bg-slate-950 text-slate-50 px-6 py-16">
@@ -7,9 +7,9 @@ export default function HomePage() {
                     <p className="text-xs uppercase tracking-[0.25em] text-slate-400">
                         Matize-Musik
                     </p>
-                    <h1 className="text-4xl font-semibold tracking-tight">Sphäre</h1>
+                    <h1 className="text-4xl font-semibold tracking-tight">SphÃ¤re</h1>
                     <p className="text-slate-300">
-                        Wähle deinen Raum.
+                        WÃ¤hle deinen Raum.
                     </p>
                 </header>
 
@@ -30,7 +30,7 @@ export default function HomePage() {
                     >
                         <h2 className="font-semibold">Kontakt</h2>
                         <p className="text-sm text-slate-300">
-                            Schreib mir für Features, Studio oder Facetten-Fragen.
+                            Schreib mir fÃ¼r Features, Studio oder Facetten-Fragen.
                         </p>
                     </a>
                 </div>
@@ -38,3 +38,4 @@ export default function HomePage() {
         </main>
     );
 }
+

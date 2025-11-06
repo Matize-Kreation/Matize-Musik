@@ -1,4 +1,4 @@
-// src/app/kontakt/page.tsx
+﻿// src/app/kontakt/page.tsx
 import React from "react";
 
 export const metadata = {
@@ -16,13 +16,13 @@ export default function KontaktPage() {
                     </p>
                     <h1 className="text-4xl font-semibold tracking-tight">Kontakt</h1>
                     <p className="text-slate-300">
-                        Schreib mir für Features, Studio oder Facetten-Fragen.
+                        Schreib mir fÃ¼r Features, Studio oder Facetten-Fragen.
                     </p>
                 </header>
 
                 <div className="rounded-2xl bg-slate-900/40 border border-slate-800/60 p-6 space-y-4">
                     <p className="text-sm text-slate-200">
-                        Hier könnte später ein echtes Formular stehen.
+                        Hier kÃ¶nnte spÃ¤ter ein echtes Formular stehen.
                     </p>
                     <p className="text-sm">
                         <span className="text-slate-400">E-Mail:</span>{" "}
@@ -38,3 +38,4 @@ export default function KontaktPage() {
         </main>
     );
 }
+

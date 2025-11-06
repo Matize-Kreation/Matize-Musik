@@ -1,4 +1,4 @@
-// src/components/sections/FacettenShowcase.tsx
+﻿// src/components/sections/FacettenShowcase.tsx
 "use client";
 
 import Image from "next/image";
@@ -10,7 +10,7 @@ export default function FacettenShowcase() {
     const albumCover =
         "/images/covers/facetten/album/facetten-album/Facetten-Cover.jpg";
 
-    // wir nehmen alle Songs aus songs.json für den Halbkreis
+    // wir nehmen alle Songs aus songs.json fÃ¼r den Halbkreis
     const [activeSong, setActiveSong] = useState<(typeof songs)[0] | null>(null);
 
     // Halbkreis-Parameter
@@ -38,10 +38,10 @@ export default function FacettenShowcase() {
                     />
                 </div>
                 <p className="text-center mt-4 text-slate-200 font-medium tracking-wide">
-                    FACETTEN – Album
+                    FACETTEN â€“ Album
                 </p>
                 <p className="text-center text-xs text-slate-400">
-                    13 Kapitel • Cinematic Rap • Spoken Word
+                    13 Kapitel â€¢ Cinematic Rap â€¢ Spoken Word
                 </p>
             </div>
 
@@ -51,14 +51,14 @@ export default function FacettenShowcase() {
                     const angleDeg = startAngle + step * index;
                     const angleRad = (angleDeg * Math.PI) / 180;
 
-                    // Mittelpunkt der Bühne
+                    // Mittelpunkt der BÃ¼hne
                     const centerX = 550;
                     const centerY = 220;
 
                     const x = centerX + radius * Math.cos(angleRad);
                     const y = centerY + radius * Math.sin(angleRad);
 
-                    // je weiter außen, desto kleiner
+                    // je weiter auÃŸen, desto kleiner
                     const scale = 1 - Math.abs(angleDeg) / 300; // 1 bis ~0.6
                     const rotateY = -angleDeg / 8; // leichte Drehung zur Mitte
 
@@ -114,7 +114,7 @@ export default function FacettenShowcase() {
                                 onClick={() => setActiveSong(null)}
                                 className="absolute top-4 right-4 text-slate-100 hover:text-white"
                             >
-                                ✕
+                                âœ•
                             </button>
                         </div>
                         <div className="p-6">
@@ -136,3 +136,4 @@ export default function FacettenShowcase() {
         </div>
     );
 }
+

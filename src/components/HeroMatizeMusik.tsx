@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 
@@ -8,7 +8,7 @@ export default function HeroMatizeMusik() {
             {/* Hintergrund */}
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,0,0,0.35)_0%,_#020617_55%,_#000_100%)]" />
 
-            {/* Ⅰ · Matize Banner */}
+            {/* â…  Â· Matize Banner */}
             <div className="relative max-w-6xl mx-auto px-4 pt-12 pb-32 lg:pt-16 lg:pb-40">
                 <div className="relative w-full h-56 sm:h-64 md:h-72 lg:h-80 rounded-2xl overflow-hidden border border-slate-700/60 bg-black/30 backdrop-blur">
                     <Image
@@ -22,7 +22,7 @@ export default function HeroMatizeMusik() {
                 </div>
             </div>
 
-            {/* Ⅱ · Separator / Titel / FREQUENZ (neu) */}
+            {/* â…¡ Â· Separator / Titel / FREQUENZ (neu) */}
             <div className="relative w-full h-[210px] -mt-28">
                 {/* blaue Trennlinie */}
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-cyan-400/0 via-cyan-400/60 to-cyan-400/0" />
@@ -34,7 +34,7 @@ export default function HeroMatizeMusik() {
                     </h2>
                 </div>
 
-                {/* Frequenz – höher gesetzt & center-out */}
+                {/* Frequenz â€“ hÃ¶her gesetzt & center-out */}
                 <div className="relative mx-auto max-w-6xl px-4 h-full flex items-start justify-center">
                     <div className="relative w-full h-[130px] mt-1">
                         {/* Basislinie */}
@@ -57,7 +57,7 @@ export default function HeroMatizeMusik() {
                         {/* Core-Flash in der Mitte */}
                         <div className="freq-core pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-cyan-200/40 blur-[10px]" />
 
-                        {/* expandierender Glow nach außen */}
+                        {/* expandierender Glow nach auÃŸen */}
                         <div className="freq-spread pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[10%] h-[50px] rounded-full bg-cyan-300/6" />
                     </div>
                 </div>
@@ -66,7 +66,7 @@ export default function HeroMatizeMusik() {
                 <div className="pointer-events-none absolute inset-x-0 bottom-[-60px] h-20 bg-cyan-500/10 blur-[55px]" />
             </div>
 
-            {/* Ⅲ · Mischpult – mit deinem neuen 8000x2122-Bild */}
+            {/* â…¢ Â· Mischpult â€“ mit deinem neuen 8000x2122-Bild */}
             <div className="relative w-full pt-24 pb-56 md:pb-64 lg:pb-72 bg-gradient-to-b from-transparent via-[#020617] to-[#020617] flex justify-center">
                 <div
                     className="
@@ -95,7 +95,7 @@ export default function HeroMatizeMusik() {
                 </div>
             </div>
 
-            {/* ✦ Animationen */}
+            {/* âœ¦ Animationen */}
             <style jsx>{`
         /* Basis-Frequenz: leichtes Einblenden + minimaler Zoom */
         .freq-base {
@@ -136,7 +136,7 @@ export default function HeroMatizeMusik() {
           }
         }
 
-        /* Spread: breitet sich von der Mitte nach außen aus */
+        /* Spread: breitet sich von der Mitte nach auÃŸen aus */
         .freq-spread {
           animation: freqSpread 1.35s ease-out 0s 1;
           transform-origin: center;
@@ -165,3 +165,4 @@ export default function HeroMatizeMusik() {
         </section>
     );
 }
+

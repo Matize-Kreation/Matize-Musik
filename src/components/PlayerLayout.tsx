@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { ReactNode, useRef, useEffect, useState } from "react";
@@ -41,7 +41,7 @@ export default function PlayerLayout({
 
     return (
         <div className="relative min-h-screen bg-[#020617] text-slate-50 overflow-hidden">
-            {/* atmosphärischer Hintergrund */}
+            {/* atmosphÃ¤rischer Hintergrund */}
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(10,15,25,0.85)_0%,_rgba(2,6,23,1)_65%,_#020617_100%)]" />
 
             {/* Inhalt */}
@@ -50,7 +50,7 @@ export default function PlayerLayout({
                 <div className="flex items-center justify-between gap-4">
                     <div>
                         <p className="text-xs uppercase tracking-[0.35em] text-slate-400 mb-2">
-                            Facetten • Track
+                            Facetten â€¢ Track
                         </p>
                         <h1 className="text-3xl font-semibold tracking-tight">
                             {title ?? "Unbenannter Track"}
@@ -64,7 +64,7 @@ export default function PlayerLayout({
                             href={backLink}
                             className="text-sm text-slate-300 hover:text-white transition"
                         >
-                            ← zurück zur Übersicht
+                            â† zurÃ¼ck zur Ãœbersicht
                         </a>
                     ) : null}
                 </div>
@@ -112,7 +112,7 @@ export default function PlayerLayout({
                                     }
                                 >
                                     <source src={audioSrc} type="audio/mpeg" />
-                                    Dein Browser unterstützt das Audio-Element nicht.
+                                    Dein Browser unterstÃ¼tzt das Audio-Element nicht.
                                 </audio>
                             ) : (
                                 <p className="text-xs text-red-300">Kein Audio hinterlegt.</p>
@@ -123,10 +123,10 @@ export default function PlayerLayout({
                         <LyricsPane
                             lrc={lyricsLrc}
                             currentTime={currentTime}
-                            isPlaying={isPlaying} // ← NEU: Info für Animation
+                            isPlaying={isPlaying} // â† NEU: Info fÃ¼r Animation
                         />
 
-                        {/* Freier Slot für Tags / Spotify / Children */}
+                        {/* Freier Slot fÃ¼r Tags / Spotify / Children */}
                         {children ? (
                             <div className="flex flex-col gap-4">{children}</div>
                         ) : null}
@@ -144,3 +144,4 @@ export default function PlayerLayout({
         </div>
     );
 }
+

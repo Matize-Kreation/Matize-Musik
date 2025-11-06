@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import HeroMatizeMusik from "@/components/HeroMatizeMusik";
 import FacettenOrbit3D from "@/components/sections/FacettenOrbit3D";
@@ -14,10 +14,11 @@ export default function MusikPage() {
                 <HeroMatizeMusik />
             </div>
 
-            {/* Hauptbühne */}
+            {/* HauptbÃ¼hne */}
             <main className="relative z-10 max-w-7xl mx-auto px-4 pb-32">
                 <FacettenOrbit3D />
             </main>
         </div>
     );
 }
+
