@@ -12,30 +12,30 @@ Write-Host "  Projekt: Matize-Musik"
 Write-Host "  Pfad: $((Get-Location).Path)"
 Write-Host "============================================"
 
-# 2. Git-Lock entfernen (falls vorheriger Git-Befehl abgebrochen wurde)
+# 2. Git-Lock entfernen
 if (Test-Path ".git\index.lock") {
     Write-Host "[Info] index.lock gefunden – wird entfernt ..." -ForegroundColor Yellow
     Remove-Item ".git\index.lock" -Force
 }
 
-# 3. Sicherstellen, dass ein Git-Repo existiert
+# 3. Git-Repo sicherstellen
 if (-not (Test-Path ".git")) {
     Write-Host "[Info] .git nicht gefunden – initialisiere Git-Repository ..." -ForegroundColor Yellow
     git init
 }
 
-# 4. Remote 'origin' prüfen / setzen
+# 4. Remote setzen/prüfen
 git remote get-url origin > $null 2>&1
 if ($LASTEXITCODE -ne 0) {
     Write-Host "[Info] Remote 'origin' nicht vorhanden – wird gesetzt ..." -ForegroundColor Yellow
     git remote add origin "https://github.com/Matize-Kreation/Matize-Musik.git"
 }
 else {
-    Write-Host "[Info] Remote 'origin' existiert – URL wird aktualisiert/synchronisiert ..." -ForegroundColor DarkGray
+    Write-Host "[Info] Remote 'origin' existiert – URL wird synchronisiert ..." -ForegroundColor DarkGray
     git remote set-url origin "https://github.com/Matize-Kreation/Matize-Musik.git"
 }
 
-# 5. Build ausführen (Next export)
+# 5. Build ausführen
 Write-Host "[Build] Starte npm run build ..." -ForegroundColor Cyan
 npm run build
 if ($LASTEXITCODE -ne 0) {
@@ -43,7 +43,7 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
-# 6. docs/ leeren und neuen Export aus out/ übernehmen
+# 6. docs leeren & out rüberkopieren
 Write-Host "[Deploy] Lösche bestehenden docs/-Inhalt ..." -ForegroundColor Cyan
 if (Test-Path ".\docs") {
     Remove-Item -Path .\docs\* -Recurse -Force -ErrorAction SilentlyContinue
@@ -53,20 +53,19 @@ else {
 }
 
 Write-Host "[Deploy] Kopiere Export aus .\out\ nach .\docs ..." -ForegroundColor Cyan
-if (Test-Path ".\out") {
-    Copy-Item -Path .\out\* -Destination .\docs -Recurse -Force
-}
-else {
-    Write-Host "[Fehler] .\out wurde nicht gefunden. Wurde der Export erzeugt?" -ForegroundColor Red
-    exit 1
+Copy-Item -Path .\out\* -Destination .\docs -Recurse -Force
+
+# 6.1 .nojekyll nachziehen (wichtig für GitHub Pages + _next)
+if (-not (Test-Path ".\docs\.nojekyll")) {
+    New-Item -Path ".\docs\.nojekyll" -ItemType File | Out-Null
 }
 
-# 7. Änderungen stagen (nur getrackte + neue)
+# 7. Änderungen stagen
 Write-Host "[Git] Füge geänderte Dateien hinzu (git add -u und docs) ..." -ForegroundColor Cyan
 git add -u
-git add docs
+git add .\docs
 
-# 8. Prüfen, ob etwas zum Committen da ist
+# 8. Commit nur wenn nötig
 git diff --cached --quiet
 if ($LASTEXITCODE -eq 0) {
     Write-Host "[Info] Keine neuen Änderungen gefunden – kein Commit nötig." -ForegroundColor DarkGray
@@ -78,20 +77,19 @@ else {
     git commit -m "$message"
 }
 
-# 9. Remote-Stand holen (mit Rebase, damit Push nicht rejected wird)
+# 9. Rebase-Pull
 Write-Host "[Git] Hole aktuellen Stand von GitHub (git pull --rebase origin main) ..." -ForegroundColor Cyan
 git pull --rebase origin main
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "[Warnung] git pull --rebase ist fehlgeschlagen. Bitte Konflikte prüfen (oft in docs/)." -ForegroundColor Yellow
-    Write-Host "          Danach erneut ausführen: git rebase --continue  ODER  Konflikte auflösen und erneut pushen."
+    Write-Host "[Warnung] git pull --rebase fehlgeschlagen – Konflikte prüfen (oft docs/)." -ForegroundColor Yellow
     exit 1
 }
 
-# 10. Pushen
+# 10. Push
 Write-Host "[Git] Push zu GitHub (git push origin main) ..." -ForegroundColor Cyan
 git push origin main
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "[Fehler] git push ist fehlgeschlagen. Bitte lokalen Stand prüfen." -ForegroundColor Red
+    Write-Host "[Fehler] git push ist fehlgeschlagen." -ForegroundColor Red
     exit 1
 }
 

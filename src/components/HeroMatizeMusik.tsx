@@ -12,7 +12,7 @@ export default function HeroMatizeMusik() {
             <div className="relative max-w-6xl mx-auto px-4 pt-12 pb-32 lg:pt-16 lg:pb-40">
                 <div className="relative w-full h-56 sm:h-64 md:h-72 lg:h-80 rounded-2xl overflow-hidden border border-slate-700/60 bg-black/30 backdrop-blur">
                     <Image
-                        src="/images/logos/banner_2560x1440.png"
+                        src="images/logos/banner_2560x1440.png"
                         alt="Matize Musik Banner"
                         fill
                         className="object-cover"
@@ -46,7 +46,7 @@ export default function HeroMatizeMusik() {
                         <div className="relative w-full h-full flex items-center justify-center">
                             <div className="freq-base relative w-[58%] sm:w-[50%] md:w-[46%] lg:w-[42%] h-[110px]">
                                 <Image
-                                    src="/images/textures/frequenz-800x200.png"
+                                    src="images/textures/frequenz-800x200.png"
                                     alt="Frequenz Visual"
                                     fill
                                     className="object-contain object-center drop-shadow-[0_8px_30px_rgba(34,211,238,0.35)]"
@@ -84,7 +84,7 @@ export default function HeroMatizeMusik() {
                 >
                     <div className="relative w-[96%] h-[96%]">
                         <Image
-                            src="/images/textures/mischpult(8000x2122).png"
+                            src="images/textures/mischpult(8000x2122).png"
                             alt="Mischpult"
                             fill
                             className="object-contain object-center"
@@ -165,4 +165,5 @@ export default function HeroMatizeMusik() {
         </section>
     );
 }
+
 
