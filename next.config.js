@@ -6,6 +6,7 @@ const nextConfig = {
     output: "export",
     basePath: isProd ? "/Matize-Musik" : "",
     trailingSlash: true,
+    staticPageGenerationTimeout: 180,
     images: {
         unoptimized: true,
     },

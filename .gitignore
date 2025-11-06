@@ -31,6 +31,5 @@ dist/
 coverage/
 
 # große lokale Medien, die NICHT zu Git sollen
-public/videos/clips/
-public/videos/raw/
-public/_raw/
+docs/videos/
+docs/**/*.mp4
