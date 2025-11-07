@@ -1,24 +1,38 @@
 ﻿// src/lib/paths.ts
-
-const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const BASE =
+    process.env.NEXT_PUBLIC_BASE_PATH && process.env.NEXT_PUBLIC_BASE_PATH !== "/"
+        ? process.env.NEXT_PUBLIC_BASE_PATH
+        : "";
 
 /**
- * Normalisiert einen optionalen Pfad für statische Assets.
- * Gibt einen vollständigen Pfad zurück oder ein Fallback-Bild.
+ * Hängt das basePath-Präfix (z. B. /Matize-Musik) korrekt an.
+ * Benutzt überall dasselbe Verhalten – Hero & Orbit!
  */
-export function normalizePublicPath(path?: string | null): string {
-    if (typeof path === "string" && path.length > 0) {
-        const cleanPath = path.startsWith("/") ? path : `/${path}`;
-        return `${base}${cleanPath}`;
-    }
-    return `${base}/fallback.png`;
+export function withBase(path: string): string {
+    if (!path) return "";
+    if (path.startsWith("http")) return path;
+    if (!path.startsWith("/")) path = "/" + path;
+    return `${BASE}${path}`;
 }
 
 /**
- * Fügt den basePath an einen gegebenen Pfad an.
- * Ideal für Bilder, Audio, Logos etc.
+ * Normalisiert Windows- oder absolute "public"-Pfade.
+ * Wird im Orbit für song.cover etc. genutzt.
  */
-export function withBase(path: string): string {
-    const cleanPath = path.startsWith("/") ? path : `/${path}`;
-    return `${base}${cleanPath}`;
+export function normalizePublicPath(raw?: string | null): string {
+    if (!raw) return "";
+
+    const winRoot = "D:\\Matize\\Matize-Kreation\\Matize-Musik\\public\\";
+    const winRootAlt1 = "D:/Matize/Matize-Kreation/Matize-Musik/public/";
+    const winRootAlt2 = "D:/Matize/Matize-Kreation/Matize-Musik/";
+
+    let cleaned = raw
+        .replace(winRoot, "/")
+        .replace(winRootAlt1, "/")
+        .replace(winRootAlt2, "/")
+        .replace(/\\/g, "/");
+
+    if (!cleaned.startsWith("/")) cleaned = "/" + cleaned;
+
+    return withBase(cleaned);
 }
