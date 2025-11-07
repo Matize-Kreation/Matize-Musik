@@ -1,8 +1,4 @@
-﻿// src/app/lyrik/page.tsx
-export const metadata = {
-    title: "Lyrik | Matize-Musik",
-    description: "Lyrik, Texte und Lines aus dem Facetten-Kosmos.",
-};
+﻿import Link from "next/link";
 
 export default function LyrikPage() {
     return (
@@ -25,6 +21,15 @@ export default function LyrikPage() {
                         “Worte fallen wie Facetten auf Beton …”
                     </p>
                 </article>
+
+                <div>
+                    <Link
+                        href="/musik"
+                        className="inline-block mt-6 text-sm text-sky-400 hover:underline"
+                    >
+                        🎧 Zur Musikseite
+                    </Link>
+                </div>
             </div>
         </main>
     );

@@ -1,15 +1,18 @@
-﻿// src/app/page.tsx
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { withBase } from "@/lib/paths";
 
+/**
+ * Startseite von Matize-Musik.
+ * Leitet automatisch weiter zur Musikseite – lokal zu /musik,
+ * auf GitHub Pages zu /Matize-Musik/musik (via withBase).
+ */
 export default function Home() {
     const router = useRouter();
 
     useEffect(() => {
-        // immer auf /musik leiten – aber basePath-sicher
         const target = withBase("/musik");
         router.replace(target);
     }, [router]);
