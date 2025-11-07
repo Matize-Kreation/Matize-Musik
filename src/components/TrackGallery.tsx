@@ -8,19 +8,19 @@ const TRACKS = [
         id: "1",
         title: "Facetten I â€“ Ruf",
         cover: "/images/tracks/facetten-1.png",
-        audioUrl: "/audio/facetten-1.mp3",
+        audio: "/audio/facetten-1.mp3",
     },
     {
         id: "2",
         title: "Matize â€“ Klartext",
         cover: "/images/tracks/klartext.png",
-        audioUrl: "/audio/klartext.mp3",
+        audio: "/audio/klartext.mp3",
     },
     {
         id: "3",
         title: "Iris Orbit",
         cover: "/images/tracks/iris-orbit.png",
-        audioUrl: "/audio/iris-orbit.mp3",
+        audio: "/audio/iris-orbit.mp3",
     },
 ];
 

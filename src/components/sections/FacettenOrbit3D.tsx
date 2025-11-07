@@ -4,7 +4,7 @@ import React, {
     useState,
     useCallback,
     useEffect,
-    useRef, // â¬…ï¸ neu
+    useRef,
 } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,11 +13,10 @@ import PlayerLayout from "@/components/PlayerLayout";
 
 const ORBIT_STORAGE_KEY = "facetten-orbit-angle";
 
-// Windows-Pfad â†’ Web-Pfad umwandeln
+// Windows-Pfad ? Web-Pfad umwandeln
 function normalizeCoverPath(raw?: string | null): string | null {
     if (!raw) return null;
 
-    // Windows-Pfad aus deinem Projekt:
     const winRoot = "D:\\Matize\\Matize-Kreation\\Matize-Musik\\public\\";
     const winRootAlt = "D:/Matize/Matize-Kreation/Matize-Musik//";
 
@@ -32,7 +31,7 @@ function normalizeCoverPath(raw?: string | null): string | null {
     // Backslashes zu normalen Slashes
     cleaned = cleaned.replace(/\\/g, "/");
 
-    // sicherstellen, dass es mit / anfÃ¤ngt
+    // sicherstellen, dass es mit / anfängt
     if (!cleaned.startsWith("/")) {
         cleaned = "/" + cleaned;
     }
@@ -40,9 +39,8 @@ function normalizeCoverPath(raw?: string | null): string | null {
     return cleaned;
 }
 
-// Fallback fÃ¼r deine 3 genannten Cover
-function getCoverSrc(song: any): string | null {
-    // 1) wenn im Song was steht â†’ normalisieren
+// Fallback für deine 3 genannten Cover
+function getCoverSrc(song: Song): string | null {
     if (song?.cover) {
         const norm = normalizeCoverPath(song.cover);
         if (norm) return norm;
@@ -51,12 +49,12 @@ function getCoverSrc(song: any): string | null {
     const title = (song?.title || "").toLowerCase();
     const slug = (song?.slug || "").toLowerCase();
 
-    // 04 â€“ Kunst
+    // 04 – Kunst
     if (title.includes("kunst") || slug.includes("kunst") || slug.includes("04")) {
         return "/images/covers/facetten/tracks/04-kunst.jpg";
     }
 
-    // 11 â€“ Fakt und Ansicht
+    // 11 – Fakt und Ansicht
     if (
         title.includes("fakt") ||
         title.includes("ansicht") ||
@@ -67,23 +65,20 @@ function getCoverSrc(song: any): string | null {
         return "/images/covers/facetten/tracks/11-fakt_und_ansicht.jpg";
     }
 
-    // 12 â€“ Apokalypse
-    if (
-        title.includes("apokalypse") ||
-        slug.includes("apokalypse") ||
-        slug.includes("12")
-    ) {
+    // 12 – Apokalypse
+    if (title.includes("apokalypse") || slug.includes("apokalypse") || slug.includes("12")) {
         return "/images/covers/facetten/tracks/12-apokalypse.jpg";
     }
 
     return null;
 }
 
+// Typ aus deinem JSON ableiten
+type Song = (typeof songs)[number];
+
 export default function FacettenOrbit3D() {
     const albumCover =
         "/images/covers/facetten/album/facetten-album/Facetten-Cover.jpg";
-
-    type Song = (typeof songs)[number];
 
     const [baseAngle, setBaseAngle] = useState(0);
     const [isFocused, setIsFocused] = useState(false);
@@ -98,7 +93,7 @@ export default function FacettenOrbit3D() {
         }
     >(null);
 
-    // â¬…ï¸ neu: hier merken wir uns die Orbit-Position genau beim Ã–ffnen
+    // hier merken wir uns die Orbit-Position genau beim Öffnen
     const angleCheckpointRef = useRef<number | null>(null);
 
     // gespeicherten Winkel holen
@@ -130,15 +125,13 @@ export default function FacettenOrbit3D() {
     }, [isFocused, selectedSong]);
 
     const closeOverlay = () => {
-        // â¬…ï¸ beim SchlieÃŸen wieder auf die alte Orbit-Position springen
+        // beim Schließen wieder auf die alte Orbit-Position springen
         if (angleCheckpointRef.current !== null) {
             setBaseAngle(angleCheckpointRef.current);
             angleCheckpointRef.current = null;
         }
         setSelectedSong(null);
         setOverlayPos(null);
-        // WICHTIG: kein setIsFocused(false) hier,
-        // damit das Drehen danach sofort wieder mÃ¶glich ist
     };
 
     const onWheel = useCallback(
@@ -162,9 +155,9 @@ export default function FacettenOrbit3D() {
     const stepAngle = 360 / itemCount;
 
     // deine Orbit-Parameter
-    const radius = 480; // sattes Drehmoment
+    const radius = 480;
     const itemSize = 130;
-    const ORBIT_X_OFFSET = -48; // leicht nach links gezogen, wie gewÃ¼nscht
+    const ORBIT_X_OFFSET = -48;
 
     return (
         <div
@@ -177,7 +170,7 @@ export default function FacettenOrbit3D() {
             {/* Hintergrund */}
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(13,16,23,0.95)_0%,_rgba(6,7,10,1)_60%,_#020617_100%)]" />
 
-            {/* 3D-Szene absolut im Viewport zentriert */}
+            {/* 3D-Szene */}
             <div
                 className="absolute top-1/2 left-1/2"
                 style={{
@@ -214,11 +207,11 @@ export default function FacettenOrbit3D() {
                                     height: `${itemSize}px`,
                                     transformStyle: "preserve-3d",
                                     transform: `
-                    rotateY(${angle}deg)
-                    translateZ(${radius}px)
-                    translate(-50%, -50%)
-                    scale(${scale})
-                  `,
+                                        rotateY(${angle}deg)
+                                        translateZ(${radius}px)
+                                        translate(-50%, -50%)
+                                        scale(${scale})
+                                    `,
                                     zIndex: isBack ? 30 : 160 - Math.abs(180 - normalized),
                                     opacity: isBack ? 0.38 : 1,
                                     filter: isBack
@@ -232,11 +225,12 @@ export default function FacettenOrbit3D() {
                                         type="button"
                                         onClick={(e) => {
                                             e.stopPropagation();
-
-                                            // â¬…ï¸ genau HIER: aktuelle Orbit-Position merken
+                                            // aktuelle Orbit-Position merken
                                             angleCheckpointRef.current = baseAngle;
 
-                                            const rect = (e.currentTarget as HTMLButtonElement).getBoundingClientRect();
+                                            const rect = (
+                                                e.currentTarget as HTMLButtonElement
+                                            ).getBoundingClientRect();
                                             const top = rect.top + window.scrollY;
                                             const left = rect.left + window.scrollX;
                                             setOverlayPos({
@@ -306,7 +300,7 @@ export default function FacettenOrbit3D() {
                 </div>
             </div>
 
-            {/* Boden */}
+            {/* Boden / Spiegelung */}
             <div
                 className="absolute left-1/2"
                 style={{
@@ -327,10 +321,7 @@ export default function FacettenOrbit3D() {
                         filter: "blur(10px)",
                     }}
                 />
-                <div
-                    className="absolute inset-0 flex justify-center"
-                    style={{ top: 0 }}
-                >
+                <div className="absolute inset-0 flex justify-center" style={{ top: 0 }}>
                     <div
                         className="relative w-[800px] max-w-[82vw] h-[230px]"
                         style={{
@@ -375,9 +366,9 @@ export default function FacettenOrbit3D() {
                             <button
                                 onClick={closeOverlay}
                                 className="absolute top-5 right-6 text-slate-200/75 hover:text-white text-2xl z-[1000]"
-                                aria-label="SchlieÃŸen"
+                                aria-label="Schließen"
                             >
-                                Ã—
+                                ×
                             </button>
                             <PlayerLayout
                                 coverSrc={
@@ -385,7 +376,14 @@ export default function FacettenOrbit3D() {
                                     normalizeCoverPath(selectedSong.cover) ||
                                     albumCover
                                 }
-                                audioSrc={selectedSong.audioUrl || selectedSong.audio}
+                                // HIER: audio ? audio und mit Slash prefixen
+                                audioSrc={
+                                    selectedSong.audio
+                                        ? selectedSong.audio.startsWith("/")
+                                            ? selectedSong.audio
+                                            : `/${selectedSong.audio}`
+                                        : ""
+                                }
                                 title={selectedSong.title}
                                 subtitle={selectedSong.subtitle}
                                 lyricsLrc={selectedSong.lyricsLrc}
@@ -395,9 +393,10 @@ export default function FacettenOrbit3D() {
                                     <a
                                         href={selectedSong.spotifyUrl}
                                         target="_blank"
+                                        rel="noreferrer"
                                         className="inline-block mt-2 text-sm text-emerald-200 hover:text-white underline underline-offset-4"
                                     >
-                                        Auf Spotify Ã¶ffnen
+                                        Auf Spotify
                                     </a>
                                 ) : null}
                                 {selectedSong.slug ? (
@@ -417,5 +416,3 @@ export default function FacettenOrbit3D() {
         </div>
     );
 }
-
-

@@ -1,6 +1,4 @@
 ﻿// src/app/lyrik/page.tsx
-import React from "react";
-
 export const metadata = {
     title: "Lyrik | Matize-Musik",
     description: "Lyrik, Texte und Lines aus dem Facetten-Kosmos.",
@@ -16,20 +14,18 @@ export default function LyrikPage() {
                     </p>
                     <h1 className="text-4xl font-semibold tracking-tight">Lyrik</h1>
                     <p className="text-slate-300">
-                        Placeholder-Seite â€“ damit der Build durchlÃ¤uft. Hier kannst du spÃ¤ter
-                        echte Texte einfÃ¼gen.
+                        Placeholder-Seite – damit der Build durchläuft. Hier kannst du später
+                        echte Texte einfügen.
                     </p>
                 </header>
 
                 <article className="rounded-2xl border border-slate-800/60 bg-slate-900/40 p-6 space-y-3">
                     <h2 className="text-lg font-semibold">Beispiel-Text</h2>
                     <p className="text-sm leading-relaxed text-slate-200">
-                        â€œWorte fallen wie Facetten auf Beton â€¦â€
+                        “Worte fallen wie Facetten auf Beton …”
                     </p>
                 </article>
             </div>
         </main>
     );
 }
-
-

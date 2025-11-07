@@ -1,47 +1,13 @@
-﻿// src/lib/paths.ts
+﻿// D:\Matize\Matize-Kreation\Matize-Musik\src\lib\paths.ts
 
-// in PROD (GitHub Pages) brauchen wir /Matize-Musik vorne dran
-const BASE_PATH =
-    process.env.NODE_ENV === "production" ? "/Matize-Musik" : "";
+const base = process.env.NEXT_PUBLIC_BASE_PATH || "/Matize-Musik";
 
-/**
- * Macht aus lokalen Windows-Pfaden oder schon vorhandenen /images/...-Pfaden
- * einen sauberen Ã¶ffentlichen Pfad inkl. BasePath.
- */
-export function normalizePublicPath(raw?: string | null): string | null {
-    if (!raw) return null;
-
-    // deine Projekt-Roots (Windows)
-    const winRoot = "D:\\Matize\\Matize-Kreation\\Matize-Musik\\public\\";
-    const winRootAlt = "D:/Matize/Matize-Kreation/Matize-Musik//";
-
-    let cleaned = raw;
-
-    // wenn ein absoluter Windows-Pfad reinkommt â†’ auf Public relativieren
-    if (cleaned.startsWith(winRoot)) {
-        cleaned = cleaned.replace(winRoot, "/");
-    } else if (cleaned.startsWith(winRootAlt)) {
-        cleaned = cleaned.replace(winRootAlt, "/");
-    }
-
-    // Backslashes zu /
-    cleaned = cleaned.replace(/\\/g, "/");
-
-    // sicherstellen, dass es mit / beginnt
-    if (!cleaned.startsWith("/")) {
-        cleaned = "/" + cleaned;
-    }
-
-    // final mit BasePath
-    return `${BASE_PATH}${cleaned}`;
+export function normalizePublicPath(path?: string | null): string {
+    return typeof path === "string" && path.length > 0
+        ? path.startsWith("/") ? `${base}${path}` : `${base}/${path}`
+        : `${base}/fallback.png`;
 }
 
-/**
- * FÃ¼r Links wie /musik â†’ /Matize-Musik/musik in prod
- */
 export function withBase(path: string): string {
-    if (!path.startsWith("/")) path = "/" + path;
-    return `${BASE_PATH}${path}`;
+    return path.startsWith("/") ? `${base}${path}` : `${base}/${path}`;
 }
-
-

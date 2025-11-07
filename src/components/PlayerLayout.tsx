@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ReactNode, useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import LyricsPane from "./LyricsPane";
+import { normalizePublicPath, withBase } from "@/lib/paths";
 
 interface PlayerLayoutProps {
     coverSrc: string;
@@ -11,8 +12,9 @@ interface PlayerLayoutProps {
     title?: string;
     subtitle?: string;
     backLink?: string;
+    rondellLink?: string;
     children?: ReactNode;
-    lyricsLrc?: string; // NEU
+    lyricsLrc?: string;
 }
 
 export default function PlayerLayout({
@@ -21,6 +23,7 @@ export default function PlayerLayout({
     title,
     subtitle,
     backLink = "/musik",
+    rondellLink = "/musik",
     children,
     lyricsLrc,
 }: PlayerLayoutProps) {
@@ -28,48 +31,49 @@ export default function PlayerLayout({
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
 
-    // bei Trackwechsel neu laden & abspielen
+    // Cover immer normalisieren
+    const safeCoverSrc = normalizePublicPath(coverSrc) ?? "";
+
+    // Audio sauber machen
+    const safeAudioSrc =
+        audioSrc ? withBase(audioSrc.startsWith("/") ? audioSrc : `/${audioSrc}`) : "";
+
+    // nur noch der Rondell-Link
+    const safeRondellLink = withBase(rondellLink);
+
     useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.load();
+        if (!audioRef.current) return;
+        audioRef.current.load();
+
+        if (safeAudioSrc) {
             audioRef.current
                 .play()
                 .then(() => setIsPlaying(true))
                 .catch(() => setIsPlaying(false));
+        } else {
+            setIsPlaying(false);
         }
-    }, [audioSrc]);
+    }, [safeAudioSrc]);
 
     return (
         <div className="relative min-h-screen bg-[#020617] text-slate-50 overflow-hidden">
-            {/* atmosphÃ¤rischer Hintergrund */}
+            {/* Hintergrund */}
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(10,15,25,0.85)_0%,_rgba(2,6,23,1)_65%,_#020617_100%)]" />
 
             {/* Inhalt */}
-            <div className="relative z-10 max-w-5xl mx-auto px-4 py-10 flex flex-col gap-10">
+            <div className="relative z-10 max-w-5xl mx-auto px-4 py-16 flex flex-col gap-10">
                 {/* Header */}
-                <div className="flex items-center justify-between gap-4">
-                    <div>
-                        <p className="text-xs uppercase tracking-[0.35em] text-slate-400 mb-2">
-                            Facetten â€¢ Track
-                        </p>
-                        <h1 className="text-3xl font-semibold tracking-tight">
-                            {title ?? "Unbenannter Track"}
-                        </h1>
-                        {subtitle ? (
-                            <p className="text-slate-400 mt-2">{subtitle}</p>
-                        ) : null}
-                    </div>
-                    {backLink ? (
-                        <a
-                            href={backLink}
-                            className="text-sm text-slate-300 hover:text-white transition"
-                        >
-                            â† zurÃ¼ck zur Ãœbersicht
-                        </a>
-                    ) : null}
+                <div>
+                    <p className="text-xs uppercase tracking-[0.35em] text-slate-400 mb-2">
+                        Facetten • Track
+                    </p>
+                    <h1 className="text-3xl font-semibold tracking-tight">
+                        {title ?? "Unbenannter Track"}
+                    </h1>
+                    {subtitle && <p className="text-slate-400 mt-2">{subtitle}</p>}
                 </div>
 
-                {/* Main Grid */}
+                {/* Haupt-Grid */}
                 <div className="grid gap-10 lg:grid-cols-[280px,1fr] items-start">
                     {/* Cover */}
                     <motion.div
@@ -78,9 +82,9 @@ export default function PlayerLayout({
                         transition={{ duration: 0.5, ease: "easeOut" }}
                         className="relative w-full aspect-square rounded-2xl overflow-hidden border border-slate-700/40 bg-slate-900/30 shadow-[0_24px_55px_rgba(0,0,0,0.35)]"
                     >
-                        {coverSrc ? (
+                        {safeCoverSrc ? (
                             <Image
-                                src={coverSrc}
+                                src={safeCoverSrc}
                                 alt={title ?? "Track Cover"}
                                 fill
                                 className="object-cover"
@@ -94,12 +98,12 @@ export default function PlayerLayout({
                         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.09)_0%,rgba(2,6,23,0)_70%)] mix-blend-screen" />
                     </motion.div>
 
-                    {/* Right Column */}
+                    {/* Rechte Spalte */}
                     <div className="flex flex-col gap-6">
                         {/* Audio */}
                         <div className="bg-slate-900/30 border border-slate-800 rounded-2xl p-5 backdrop-blur-md">
                             <p className="text-sm text-slate-300 mb-3">Direkt abspielen</p>
-                            {audioSrc ? (
+                            {safeAudioSrc ? (
                                 <audio
                                     ref={audioRef}
                                     controls
@@ -111,25 +115,23 @@ export default function PlayerLayout({
                                         setCurrentTime(e.currentTarget.currentTime)
                                     }
                                 >
-                                    <source src={audioSrc} type="audio/mpeg" />
-                                    Dein Browser unterstÃ¼tzt das Audio-Element nicht.
+                                    <source src={safeAudioSrc} type="audio/mpeg" />
+                                    Dein Browser unterstützt das Audio-Element nicht.
                                 </audio>
                             ) : (
                                 <p className="text-xs text-red-300">Kein Audio hinterlegt.</p>
                             )}
                         </div>
 
-                        {/* Lyrics direkt im Player verankert */}
+                        {/* Lyrics */}
                         <LyricsPane
                             lrc={lyricsLrc}
                             currentTime={currentTime}
-                            isPlaying={isPlaying} // â† NEU: Info fÃ¼r Animation
+                            isPlaying={isPlaying}
                         />
 
-                        {/* Freier Slot fÃ¼r Tags / Spotify / Children */}
-                        {children ? (
-                            <div className="flex flex-col gap-4">{children}</div>
-                        ) : null}
+                        {/* Optionale Zusatzinhalte */}
+                        {children && <div className="flex flex-col gap-4">{children}</div>}
                     </div>
                 </div>
             </div>
@@ -144,5 +146,3 @@ export default function PlayerLayout({
         </div>
     );
 }
-
-
