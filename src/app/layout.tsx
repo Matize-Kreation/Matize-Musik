@@ -1,8 +1,7 @@
-﻿
-
-// src/app/layout.tsx
+﻿// src/app/layout.tsx
 import type { Metadata } from "next";
 import "../styles/globals.css";
+import MatizeCosmicOverlay from "@/components/MatizeCosmicOverlay";
 
 export const metadata: Metadata = {
     title: "Matize Musik",
@@ -16,8 +15,12 @@ export default function RootLayout({
 }) {
     return (
         <html lang="de" className="dark" suppressHydrationWarning>
-            <body className="bg-[#0a0a0a] text-slate-100 min-h-screen antialiased">
-                <div className="min-h-screen flex flex-col">
+            <body className="relative bg-[#020617] text-slate-100 min-h-screen antialiased overflow-x-hidden">
+                {/* === Sparkle-Cosmos unterhalb des Inhalts === */}
+                <MatizeCosmicOverlay />
+
+                {/* === Seiten-Inhalt === */}
+                <div className="relative z-20 flex flex-col min-h-screen">
                     <main className="flex-1">{children}</main>
                 </div>
             </body>

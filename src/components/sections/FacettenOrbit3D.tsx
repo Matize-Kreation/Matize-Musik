@@ -29,10 +29,8 @@ const FACETTEN_TRACK_FIXES: Record<string, string> = {
 function normalizeCoverPath(raw?: string | null): string | null {
     if (!raw) return null;
 
-    // 1) erst Dateiname rausziehen – damit wir ganz früh fixen können
     const basename = raw.split(/[/\\]/).pop()?.toLowerCase() ?? "";
     if (basename && FACETTEN_TRACK_FIXES[basename]) {
-        // hier direkt den sauberen Webpfad zurück
         return FACETTEN_TRACK_FIXES[basename];
     }
 
@@ -58,7 +56,6 @@ function normalizeCoverPath(raw?: string | null): string | null {
 
     return cleaned;
 }
-
 
 function getCoverSrc(song: Song): string | null {
     if (song?.cover) {
@@ -151,7 +148,7 @@ export default function FacettenOrbit3D() {
         []
     );
 
-    // Scroll-Snap: später greifen lassen
+    // Scroll-Snap: etwas entschärft
     useEffect(() => {
         if (typeof window === "undefined") return;
 
@@ -164,29 +161,30 @@ export default function FacettenOrbit3D() {
             const orbitCenter = rect.top + rect.height / 2;
             const delta = orbitCenter - viewportCenter;
 
-            // NEU: wenn das Orbit-Element noch zu nah am oberen Rand ist,
-            // (wir kommen gerade erst aus dem Hero) → gar nicht snappen
-            // z.B. erst snappen, wenn die Oberkante des Orbits mindestens 260px unterm Viewport ist
-            if (rect.top < 260) {
+            // weiter oben: gar nicht snappen
+            // (etwas höher gesetzt, damit es seltener greift)
+            if (rect.top < 320) {
                 return;
             }
 
-            // sehr weit weg → user will raus
-            if (Math.abs(delta) > 360) {
+            // sehr weit weg → User will frei scrollen
+            if (Math.abs(delta) > 320) {
                 userOverrideRef.current = true;
                 return;
             }
 
-            // enger Korridor
-            if (!userOverrideRef.current && Math.abs(delta) < 90) {
+            // enger Korridor, aber etwas kleiner als vorher
+            // damit er nicht bei jeder Kleinigkeit snapt
+            if (!userOverrideRef.current && Math.abs(delta) < 70) {
                 isSnappingRef.current = true;
                 window.scrollTo({
                     top: window.scrollY + delta,
                     behavior: "smooth",
                 });
+                // etwas länger warten, damit nicht mehrfach hintereinander gesnapt wird
                 setTimeout(() => {
                     isSnappingRef.current = false;
-                }, 520);
+                }, 650);
             }
         };
 
@@ -261,11 +259,11 @@ export default function FacettenOrbit3D() {
                                     height: `${itemSize}px`,
                                     transformStyle: "preserve-3d",
                                     transform: `
-                    rotateY(${angle}deg)
-                    translateZ(${radius}px)
-                    translate(-50%, -50%)
-                    scale(${scale})
-                  `,
+                                        rotateY(${angle}deg)
+                                        translateZ(${radius}px)
+                                        translate(-50%, -50%)
+                                        scale(${scale})
+                                    `,
                                     zIndex: isBack ? 30 : 160 - Math.abs(180 - normalized),
                                     opacity: isBack ? 0.38 : 1,
                                     filter: isBack ? "blur(0.25px) brightness(0.78)" : "brightness(1)",
@@ -403,11 +401,11 @@ export default function FacettenOrbit3D() {
                     className="relative w-full h-full"
                     style={{
                         background:
-                            "radial-gradient(ellipse at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 54%, rgba(0,0,0,1) 100%)",
-                        transform: "rotateX(16deg) scale(1, 0.55)",
+                            "radial-gradient(ellipse at center, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0) 100%)",
+                        transform: "rotateX(16deg) scale(1, 0.62)",
                         borderRadius: "9999px",
                         overflow: "hidden",
-                        boxShadow: "0 46px 120px rgba(0,0,0,0.65)",
+                        boxShadow: "0 46px 120px rgba(0,0,0,0.55)",
                     }}
                 >
                     <div

@@ -1,25 +1,23 @@
 ﻿"use client";
+/* src/app/musik/page.tsx */
 
 import HeroMatizeMusik from "@/components/HeroMatizeMusik";
 import FacettenOrbit3D from "@/components/sections/FacettenOrbit3D";
 
 export default function MusikPage() {
+    console.log("🎵 /musik page loaded");
+
     return (
-        <div className="relative min-h-screen overflow-hidden bg-[#020617]">
-            {/* globaler Hintergrundverlauf */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_#1f2937_0%,_#020617_55%,_#000_100%)] opacity-70" />
-
-            {/* Hero */}
-            <div className="relative z-10">
+        <div className="relative min-h-screen overflow-hidden bg-transparent">
+            {/* Hero oben */}
+            <section className="relative z-30 pt-24 pb-16">
                 <HeroMatizeMusik />
-            </div>
+            </section>
 
-            {/* HauptbÃ¼hne */}
-            <main className="relative z-10 max-w-7xl mx-auto px-4 pb-32">
+            {/* Orbit darunter */}
+            <section className="relative z-30">
                 <FacettenOrbit3D />
-            </main>
+            </section>
         </div>
     );
 }
-
-

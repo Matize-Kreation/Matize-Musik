@@ -1,27 +1,18 @@
 ﻿"use client";
+/* src/app/musik/page.tsx */
+import FacettenOrbit3D from "@/components/sections/FacettenOrbit3D";
+import MatizeCosmicOverlay from "@/components/MatizeCosmicOverlay";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { withBase } from "@/lib/paths";
-
-/**
- * Startseite von Matize-Musik.
- * Leitet automatisch weiter zur Musikseite – lokal zu /musik,
- * auf GitHub Pages zu /Matize-Musik/musik (via withBase).
- */
-export default function Home() {
-    const router = useRouter();
-
-    useEffect(() => {
-        const target = withBase("/musik");
-        router.replace(target);
-    }, [router]);
-
+export default function MusikPage() {
     return (
-        <main className="min-h-screen bg-slate-950 flex items-center justify-center">
-            <p className="text-slate-400 text-sm tracking-wide">
-                Weiterleiten zur Musik-Bühne …
-            </p>
-        </main>
+        <div className="relative min-h-screen bg-[#020617] overflow-hidden">
+            {/* globaler James-Webb-Cosmos */}
+            <MatizeCosmicOverlay />
+
+            {/* Musik-Inhalt */}
+            <main className="relative z-10">
+                <FacettenOrbit3D />
+            </main>
+        </div>
     );
 }
