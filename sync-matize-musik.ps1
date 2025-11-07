@@ -1,38 +1,36 @@
-# Matize-Musik – simpler GitHub Sync
+# sync-matize-musik.ps1
+Write-Host "==============================================="
+Write-Host "🚀 Starte Matize-Musik Deployment"
+Write-Host "==============================================="
 
+# Projektpfad
 Set-Location "D:\Matize\Matize-Kreation\Matize-Musik"
 
-Write-Host "== Matize-Musik Sync =="
+# Git vorbereiten
+if (Test-Path ".git\index.lock") { Remove-Item ".git\index.lock" -Force }
 
-# git lock weg
-if (Test-Path ".git\index.lock") {
-    Remove-Item ".git\index.lock" -Force
-}
-
-# repo sicherstellen
 if (-not (Test-Path ".git")) {
     git init
 }
 
-# remote sicherstellen
-git remote get-url origin > $null 2>&1
-if ($LASTEXITCODE -ne 0) {
+if (-not (git remote)) {
     git remote add origin "https://github.com/Matize-Kreation/Matize-Musik.git"
 }
 else {
     git remote set-url origin "https://github.com/Matize-Kreation/Matize-Musik.git"
 }
 
-# build
-Write-Host "[Build] npm run build"
+# Build mit EXPORT=true
+$env:EXPORT = "true"
+Write-Host "[Build] Starte Export-Build..."
 npm run build
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "Build fehlgeschlagen."
+    Write-Host "❌ Build fehlgeschlagen."
     exit 1
 }
 
-# docs leeren
-Write-Host "[Deploy] docs leeren"
+# docs vorbereiten
+Write-Host "[Deploy] Bereinige docs/"
 if (Test-Path ".\docs") {
     Remove-Item .\docs\* -Recurse -Force -ErrorAction SilentlyContinue
 }
@@ -40,38 +38,33 @@ else {
     New-Item -ItemType Directory -Path .\docs | Out-Null
 }
 
-# out nach docs
-Write-Host "[Deploy] out -> docs"
+# out → docs
 Copy-Item .\out\* .\docs -Recurse -Force
 
-# .nojekyll anlegen (immer)
+# public → docs (für Bilder, Audio etc.)
+Copy-Item .\public\* .\docs -Recurse -Force -ErrorAction SilentlyContinue
+
+# .nojekyll
 New-Item -Path ".\docs\.nojekyll" -ItemType File -Force | Out-Null
 
-# git add
-Write-Host "[Git] add"
+# Git commit
 git add -u
 git add .\docs
 
-# commit nur falls nötig
-git diff --cached --quiet
-if ($LASTEXITCODE -ne 0) {
+if (-not (git diff --cached --quiet)) {
     $ts = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
     git commit -m "deploy: export to docs ($ts)"
 }
 else {
-    Write-Host "nix zu committen"
+    Write-Host "🔍 Keine Änderungen zum Commit."
 }
 
-# pull --rebase
-Write-Host "[Git] pull --rebase"
+# Git push
 git pull --rebase origin main
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "pull --rebase fehlgeschlagen. Abbruch."
-    exit 1
-}
-
-# push
-Write-Host "[Git] push"
 git push origin main
 
-Write-Host "== fertig =="
+Write-Host "✅ Deployment abgeschlossen."
+# .next löschen, falls vorhanden
+if (Test-Path ".next") {
+    Remove-Item ".next" -Recurse -Force -ErrorAction SilentlyContinue
+}

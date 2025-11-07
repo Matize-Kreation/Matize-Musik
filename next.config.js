@@ -1,17 +1,17 @@
 // next.config.js
-/** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === "production";
-const repoName = "Matize-Musik";
 
+const isExport = process.env.EXPORT === "true" || process.env.NODE_ENV === "production";
+
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true,
     output: "export",
-    basePath: isProd ? `/${repoName}` : "",
-    assetPrefix: isProd ? `/${repoName}/` : "",
-    trailingSlash: true,
+    basePath: isExport ? "/Matize-Musik" : "",
+    assetPrefix: isExport ? "/Matize-Musik" : "",
     images: {
-        // weil GitHub Pages + static export
         unoptimized: true,
+    },
+    env: {
+        NEXT_PUBLIC_BASE_PATH: isExport ? "/Matize-Musik" : "",
     },
 };
 
