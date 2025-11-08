@@ -1,10 +1,14 @@
-﻿"use client";
+﻿/* src/components/PlayerLayout.tsx */
+"use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ReactNode, useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import LyricsPane from "./LyricsPane";
+import SongTextFlow from "./SongTextFlow";
 import { normalizePublicPath, withBase } from "@/lib/paths";
+import { FACETTEN_LYRICS } from "@/data/facettenLyrics";
 
 interface PlayerLayoutProps {
     coverSrc: string;
@@ -15,6 +19,7 @@ interface PlayerLayoutProps {
     rondellLink?: string;
     children?: ReactNode;
     lyricsLrc?: string;
+    facettenId?: string; // z.B. "spotlight_an"
 }
 
 export default function PlayerLayout({
@@ -22,25 +27,27 @@ export default function PlayerLayout({
     audioSrc,
     title,
     subtitle,
-    backLink = "/musik",
-    rondellLink = "/musik",
+    backLink = "/",
+    rondellLink,
     children,
     lyricsLrc,
+    facettenId,
 }: PlayerLayoutProps) {
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
 
-    // Cover immer normalisieren
+    // Cover normalisieren
     const safeCoverSrc = normalizePublicPath(coverSrc) ?? "";
 
-    // Audio sauber machen
+    // Audio normalisieren
     const safeAudioSrc =
         audioSrc ? withBase(audioSrc.startsWith("/") ? audioSrc : `/${audioSrc}`) : "";
 
-    // nur noch der Rondell-Link
-    const safeRondellLink = withBase(rondellLink);
+    // Songtext-Verlauf aus zentraler Datei
+    const flowBlocks = facettenId ? FACETTEN_LYRICS[facettenId] ?? [] : [];
 
+    // Audio beim Wechsel neu laden + Autoplay versuchen
     useEffect(() => {
         if (!audioRef.current) return;
         audioRef.current.load();
@@ -62,6 +69,26 @@ export default function PlayerLayout({
 
             {/* Inhalt */}
             <div className="relative z-10 max-w-5xl mx-auto px-4 py-16 flex flex-col gap-10">
+                {/* Top-Bar mit Links */}
+                <div className="flex gap-4 items-center text-xs text-slate-400">
+                    {backLink && (
+                        <Link
+                            href={withBase(backLink)}
+                            className="hover:text-slate-100 transition-colors"
+                        >
+                            ← Zurück
+                        </Link>
+                    )}
+                    {rondellLink && (
+                        <Link
+                            href={withBase(rondellLink)}
+                            className="hover:text-slate-100 transition-colors"
+                        >
+                            🌀 Zum Rondell
+                        </Link>
+                    )}
+                </div>
+
                 {/* Header */}
                 <div>
                     <p className="text-xs uppercase tracking-[0.35em] text-slate-400 mb-2">
@@ -73,7 +100,7 @@ export default function PlayerLayout({
                     {subtitle && <p className="text-slate-400 mt-2">{subtitle}</p>}
                 </div>
 
-                {/* Haupt-Grid */}
+                {/* Hauptbereich */}
                 <div className="grid gap-10 lg:grid-cols-[280px,1fr] items-start">
                     {/* Cover */}
                     <motion.div
@@ -111,9 +138,7 @@ export default function PlayerLayout({
                                     className="w-full accent-emerald-400"
                                     onPlay={() => setIsPlaying(true)}
                                     onPause={() => setIsPlaying(false)}
-                                    onTimeUpdate={(e) =>
-                                        setCurrentTime(e.currentTarget.currentTime)
-                                    }
+                                    onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
                                 >
                                     <source src={safeAudioSrc} type="audio/mpeg" />
                                     Dein Browser unterstützt das Audio-Element nicht.
@@ -123,14 +148,24 @@ export default function PlayerLayout({
                             )}
                         </div>
 
-                        {/* Lyrics */}
-                        <LyricsPane
-                            lrc={lyricsLrc}
+                        {/* Facetten-Text mit Verlauf */}
+                        <SongTextFlow
+                            blocks={flowBlocks}
                             currentTime={currentTime}
                             isPlaying={isPlaying}
+                            variant="graphit"
                         />
 
-                        {/* Optionale Zusatzinhalte */}
+                        {/* LRC nur wenn vorhanden */}
+                        {lyricsLrc && (
+                            <LyricsPane
+                                lrc={lyricsLrc}
+                                currentTime={currentTime}
+                                isPlaying={isPlaying}
+                            />
+                        )}
+
+                        {/* Zusatzblöcke der Seite */}
                         {children && <div className="flex flex-col gap-4">{children}</div>}
                     </div>
                 </div>

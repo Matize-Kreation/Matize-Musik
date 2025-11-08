@@ -1,4 +1,5 @@
-﻿"use client";
+﻿/* src\components\LyricsPane.tsx */
+"use client";
 
 import { useEffect, useMemo, useState } from "react";
 
@@ -71,23 +72,23 @@ export default function LyricsPane({
                             <div
                                 key={idx}
                                 className={`h-10 flex items-center pl-5 pr-4 text-sm md:text-base transition-all duration-300 ${isActive
-                                        ? "text-white"
-                                        : "text-slate-400/50"
+                                    ? "text-white"
+                                    : "text-slate-400/50"
                                     }`}
                             >
                                 {/* linker Balken als Beat-Anzeige */}
                                 <div
                                     className={`w-1 h-6 rounded-full mr-3 transition-all ${isActive
-                                            ? isPlaying
-                                                ? "bg-emerald-300/90 scale-y-100"
-                                                : "bg-slate-500/50"
-                                            : "bg-transparent scale-y-0"
+                                        ? isPlaying
+                                            ? "bg-emerald-300/90 scale-y-100"
+                                            : "bg-slate-500/50"
+                                        : "bg-transparent scale-y-0"
                                         }`}
                                 />
                                 <span
                                     className={`transition-all ${isActive && isPlaying
-                                            ? "scale-[1.02] drop-shadow-[0_0_8px_rgba(0,255,200,0.35)]"
-                                            : ""
+                                        ? "scale-[1.02] drop-shadow-[0_0_8px_rgba(0,255,200,0.35)]"
+                                        : ""
                                         }`}
                                 >
                                     {line.text || "â‹¯"}

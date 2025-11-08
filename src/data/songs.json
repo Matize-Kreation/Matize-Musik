@@ -13,8 +13,7 @@
             "Facetten",
             "Intro",
             "Cinematic"
-        ],
-        "lyricsLrc": "[00:00.00]Spotlight an\n[00:02.80]Nehm' den Stift und mal die Bahn\n[00:05.60]Jede Facette wird jetzt klar\n[00:08.20]Matize stellt die Bühne dar\n[00:11.00]Spotlight an"
+        ]
     },
     {
         "id": "mein_ding",
@@ -29,8 +28,7 @@
         "tags": [
             "Facetten",
             "Rap"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen\n[00:04.00]Hier kommt später der echte Text"
+        ]
     },
     {
         "id": "perspektive",
@@ -45,8 +43,7 @@
         "tags": [
             "Facetten",
             "Spoken Word"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen"
+        ]
     },
     {
         "id": "kunst",
@@ -61,8 +58,7 @@
         "tags": [
             "Facetten",
             "Poetic Rap"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen"
+        ]
     },
     {
         "id": "klartext",
@@ -77,8 +73,7 @@
         "tags": [
             "Facetten",
             "Statement"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen"
+        ]
     },
     {
         "id": "arme_des_teufels",
@@ -93,8 +88,7 @@
         "tags": [
             "Facetten",
             "Storytelling"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen"
+        ]
     },
     {
         "id": "psychoanalyse",
@@ -109,8 +103,7 @@
         "tags": [
             "Facetten",
             "Dark"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen"
+        ]
     },
     {
         "id": "wasserfarben",
@@ -125,8 +118,7 @@
         "tags": [
             "Facetten",
             "Poetry"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen"
+        ]
     },
     {
         "id": "tip_top",
@@ -141,8 +133,7 @@
         "tags": [
             "Facetten",
             "Drive"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen"
+        ]
     },
     {
         "id": "buddy",
@@ -157,8 +148,7 @@
         "tags": [
             "Facetten",
             "Friendship"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen"
+        ]
     },
     {
         "id": "fakt_und_ansicht",
@@ -173,8 +163,7 @@
         "tags": [
             "Facetten",
             "Philosophical"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen"
+        ]
     },
     {
         "id": "apokalypse",
@@ -189,8 +178,7 @@
         "tags": [
             "Facetten",
             "Cinematic"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen"
+        ]
     },
     {
         "id": "blut_und_ehre",
@@ -205,7 +193,6 @@
         "tags": [
             "Facetten",
             "Finale"
-        ],
-        "lyricsLrc": "[00:00.00]Lyrics folgen"
+        ]
     }
 ]

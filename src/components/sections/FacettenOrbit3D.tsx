@@ -14,7 +14,9 @@ import songs from "@/data/songs.json";
 import PlayerLayout from "@/components/PlayerLayout";
 import { withBase } from "@/lib/paths";
 
-type Song = (typeof songs)[number];
+type Song = (typeof songs)[number] & {
+    lyricsLrc?: string;
+};
 
 const ORBIT_STORAGE_KEY = "facetten-orbit-angle";
 
@@ -162,7 +164,6 @@ export default function FacettenOrbit3D() {
             const delta = orbitCenter - viewportCenter;
 
             // weiter oben: gar nicht snappen
-            // (etwas höher gesetzt, damit es seltener greift)
             if (rect.top < 320) {
                 return;
             }
@@ -173,15 +174,13 @@ export default function FacettenOrbit3D() {
                 return;
             }
 
-            // enger Korridor, aber etwas kleiner als vorher
-            // damit er nicht bei jeder Kleinigkeit snapt
+            // enger Korridor
             if (!userOverrideRef.current && Math.abs(delta) < 70) {
                 isSnappingRef.current = true;
                 window.scrollTo({
                     top: window.scrollY + delta,
                     behavior: "smooth",
                 });
-                // etwas länger warten, damit nicht mehrfach hintereinander gesnapt wird
                 setTimeout(() => {
                     isSnappingRef.current = false;
                 }, 650);
@@ -527,6 +526,12 @@ export default function FacettenOrbit3D() {
                                 lyricsLrc={selectedSong.lyricsLrc}
                                 backLink="/musik"
                                 rondellLink="/musik"
+                                // WICHTIG: zuerst facettenId, dann slug, dann id
+                                facettenId={
+                                    (selectedSong as any).facettenId ||
+                                    (selectedSong as any).slug ||
+                                    (selectedSong as any).id
+                                }
                             >
                                 {selectedSong.spotifyUrl && (
                                     <a
